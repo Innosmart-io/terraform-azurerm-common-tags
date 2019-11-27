@@ -70,7 +70,7 @@ module "std_tags" {
     project         = "${var.project}"
     applicationid   = "${var.applicationid}"
     template        = "${var.template}"
-    version         = "${var.version}"
+    template_version= "${var.template_version}"
     environment     = "${var.environment}"
     tier            = "${var.tier}"
     cron            = "${var.cron}"
@@ -83,18 +83,18 @@ module "std_tags" {
 
 # If you do not need to add tags, then follow this approach:
 resource "azurerm_resource_group" "rg1" {
-  name     = "rg-1"
-  location = "${var.region}"
+  name      = "rg-1"
+  location  = "${var.region}"
 
-  tags = "${module.std_tags.common_tags}"
+  tags      = "${module.std_tags.common_tags}"
 }
 
 # If you want to add tags, then follow this approach:
 resource "azurerm_resource_group" "rg1" {
-  name     = "rg-1"
-  location = "${var.region}"
+  name      = "rg-1"
+  location  = "${var.region}"
 
-  tags = "${merge(
+  tags      = "${merge(
     map (
       "name", var.rg_name
     ), 

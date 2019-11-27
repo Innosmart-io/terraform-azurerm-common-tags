@@ -35,7 +35,7 @@ variable "template" {
   description = "Name of the main template used to generate the resources"
 }
 
-variable "version" {
+variable "template_version" {
   type        = "string"
   description = "version of the template used to generate the resources"
 }

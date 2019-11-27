@@ -13,7 +13,7 @@ locals {
     "project", var.project,
     "applicationid", var.applicationid,
     "template", var.template,
-    "version", var.version,
+    "template_version", var.template_version,
     "environment", var.environment,
     "updatedate", timestamp(),
     "tier", var.tier,
