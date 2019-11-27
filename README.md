@@ -63,20 +63,20 @@ You can reference the module in your templates using this code:
 
 ```hcl
 module "std_tags" {
-    src             = "github.com/Innosmart-io/terraform-azurerm-common-tags"
-    owner           = "${var.owner}"
-    costcenter      = "${var.costcenter}"
-    customer        = "${var.customer}"
-    project         = "${var.project}"
-    applicationid   = "${var.applicationid}"
-    template        = "${var.template}"
-    template_version= "${var.template_version}"
-    environment     = "${var.environment}"
-    tier            = "${var.tier}"
-    cron            = "${var.cron}"
-    automation      = "${var.automation}"
-    confidentiality = "${var.confidentiality}"
-    compliance      = "${var.compliance}"
+  source           = "github.com/Innosmart-io/terraform-azurerm-common-tags"
+  owner            = var.owner
+  costcenter       = var.costcenter
+  customer         = var.customer
+  project          = var.project
+  applicationid    = var.applicationid
+  template         = var.template
+  template_version = var.template_version
+  environment      = var.environment
+  tier             = var.tier
+  cron             = var.cron
+  automation       = var.automation
+  confidentiality  = var.confidentiality
+  compliance       = var.compliance
 }
 
 # Then, you can reference it in the resources or other modules by:
@@ -84,9 +84,9 @@ module "std_tags" {
 # If you do not need to add tags, then follow this approach:
 resource "azurerm_resource_group" "rg1" {
   name      = "rg-1"
-  location  = "${var.region}"
+  location  = var.region
 
-  tags      = "${module.std_tags.common_tags}"
+  tags      = module.std_tags.common_tags
 }
 
 # If you want to add tags, then follow this approach:
@@ -94,11 +94,11 @@ resource "azurerm_resource_group" "rg1" {
   name      = "rg-1"
   location  = "${var.region}"
 
-  tags      = "${merge(
-    map (
-      "name", var.rg_name
-    ), 
-    module.std_tags.common_tags)}"
+tags = merge(
+    map(
+      "name", local.rg_name
+    ),
+  module.std_tags.common_tags)
 }
 
 ```
