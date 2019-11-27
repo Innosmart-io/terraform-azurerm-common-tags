@@ -3,10 +3,13 @@
 #i
 # Author: valery.jacot@innosmart.io
 # --------------------------------------------------------------------------
-
+provider "azurerm" {
+  # whilst the `version` attribute is optional, we recommend pinning to a given version of the Provider
+  version = ">=1.36.0"
+}
 # Generate the local variable as a map which will encapsulate all the key values for the tags
 locals {
-  common_tags = "${map(
+  common_tags = map(
     "owner", var.owner,
     "costcenter", var.costcenter,
     "customer", var.customer,
@@ -21,5 +24,5 @@ locals {
     "automation", var.automation,
     "confidentiality", var.confidentiality,
     "compliance", var.compliance
-  )}"
+  )
 }
