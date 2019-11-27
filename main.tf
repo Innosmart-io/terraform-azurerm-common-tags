@@ -6,7 +6,7 @@
 
 # Generate the local variable as a map which will encapsulate all the key values for the tags
 locals {
-  commont_tags = "${map(
+  common_tags = "${map(
     "owner", var.owner,
     "costcenter", var.costcenter,
     "customer", var.customer,
